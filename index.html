@@ -37,6 +37,9 @@ window.onload = function() {
     }
 
     document.getElementById('username').innerText = `You are logged in as: ${username}`;
+
+    // Load chat history from local storage
+    loadChatHistory();
 };
 
 // Generate a random anonymous name in the format ANONYMOUS#<random_number>
@@ -54,20 +57,54 @@ function sendMessage() {
         const username = localStorage.getItem('username');
         const chatArea = document.getElementById('chat-area');
         
-        // Create a message element
-        const messageElement = document.createElement('div');
-        messageElement.classList.add('message');
-        messageElement.innerHTML = `<strong>${username}</strong>: ${message}`;
-        
-        // Add message to chat area
-        chatArea.appendChild(messageElement);
-        
-        // Scroll to the bottom of the chat area
-        chatArea.scrollTop = chatArea.scrollHeight;
+        // Create a message object
+        const messageObject = {
+            username: username,
+            message: message,
+            timestamp: new Date().toISOString()
+        };
 
+        // Get chat history from localStorage, or start a new array
+        let chatHistory = JSON.parse(localStorage.getItem('chatHistory')) || [];
+
+        // Add new message to chat history
+        chatHistory.push(messageObject);
+
+        // Save the updated chat history back to localStorage
+        localStorage.setItem('chatHistory', JSON.stringify(chatHistory));
+
+        // Display the new message
+        displayMessage(messageObject);
+        
         // Clear the message input field
         messageInput.value = '';
     }
+}
+
+// Function to display a message in the chat
+function displayMessage(messageObject) {
+    const chatArea = document.getElementById('chat-area');
+
+    // Create a message element
+    const messageElement = document.createElement('div');
+    messageElement.classList.add('message');
+    messageElement.innerHTML = `<strong>${messageObject.username}</strong>: ${messageObject.message} <span class="timestamp">${new Date(messageObject.timestamp).toLocaleTimeString()}</span>`;
+
+    // Add message to chat area
+    chatArea.appendChild(messageElement);
+    
+    // Scroll to the bottom of the chat area
+    chatArea.scrollTop = chatArea.scrollHeight;
+}
+
+// Function to load chat history from localStorage
+function loadChatHistory() {
+    const chatHistory = JSON.parse(localStorage.getItem('chatHistory')) || [];
+
+    // Display all stored messages
+    chatHistory.forEach(message => {
+        displayMessage(message);
+    });
 }
 </script>
 
