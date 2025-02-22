@@ -3,34 +3,23 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Webify</title>
+    <title>Public Chat - Name Selection</title>
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
 
-<div class="auth-container">
-    <h1>Welcome to Webify</h1>
-    <p>Please log in, sign up, or choose to be anonymous.</p>
+<div class="container">
+    <h1>Enter Your Chat Name</h1>
+    <p>Please choose a unique name to join the chat.</p>
 
-    <!-- Login Form -->
-    <div class="form-container" id="login-form">
-        <h2>Login</h2>
-        <input type="email" id="login-email" placeholder="Email" required>
-        <input type="password" id="login-password" placeholder="Password" required>
-        <button onclick="loginUser()">Log In</button>
+    <div class="form-container">
+        <input type="text" id="username" placeholder="Enter name..." maxlength="15">
+        <button onclick="checkNameAvailability()">Submit</button>
     </div>
 
-    <!-- Signup Form -->
-    <div class="form-container" id="signup-form">
-        <h2>Sign Up</h2>
-        <input type="email" id="signup-email" placeholder="Email" required>
-        <input type="password" id="signup-password" placeholder="Password" required>
-        <button onclick="signUpUser()">Sign Up</button>
+    <div id="error-message" class="error-message">
+        NAME NOT AVAILABLE
     </div>
-
-    <!-- Anonymous Login -->
-    <button class="anonymous-btn" onclick="anonymousLogin()">Join as Anonymous</button>
-
 </div>
 
 <script src="scripts.js"></script>
