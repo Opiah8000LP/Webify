@@ -2,9 +2,8 @@
 window.onload = function() {
     const storedName = localStorage.getItem('username');
     if (storedName) {
-        document.getElementById('username').value = storedName;
         // Optionally, direct them to the chat page if they have a saved name.
-        // window.location.href = 'chat.html';  // Uncomment if you want automatic redirection if a name is already saved
+        window.location.href = 'chat.html'; // Redirect to chat if name is already saved
     }
 };
 
