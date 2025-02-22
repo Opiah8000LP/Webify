@@ -1,0 +1,128 @@
+/* styles.css */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    background-color: #121212;
+    color: #fff;
+    overflow-x: hidden;
+}
+
+/* Navbar Styling */
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    padding: 20px 40px;
+    background-color: #1db954;
+}
+
+.navbar .logo {
+    font-size: 24px;
+    font-weight: bold;
+}
+
+.navbar .menu a {
+    margin: 0 20px;
+    text-decoration: none;
+    color: white;
+    font-size: 16px;
+    transition: color 0.3s ease;
+}
+
+.navbar .menu a:hover {
+    color: #000;
+}
+
+/* Hero Section */
+.hero {
+    height: 100vh;
+    background: url('https://via.placeholder.com/1200x800') no-repeat center center/cover;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    color: white;
+}
+
+.hero h1 {
+    font-size: 48px;
+    margin-bottom: 20px;
+}
+
+.hero p {
+    font-size: 20px;
+    margin-bottom: 40px;
+}
+
+.hero .cta-button {
+    background-color: #1db954;
+    border: none;
+    padding: 15px 40px;
+    font-size: 18px;
+    border-radius: 30px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.hero .cta-button:hover {
+    background-color: #1ed760;
+}
+
+/* Albums Section */
+.albums-section {
+    padding: 40px;
+    text-align: center;
+    background-color: #181818;
+}
+
+.albums-section h2 {
+    font-size: 32px;
+    margin-bottom: 20px;
+}
+
+.album-container {
+    display: flex;
+    justify-content: center;
+    gap: 40px;
+    flex-wrap: wrap;
+}
+
+.album-card {
+    background-color: #222;
+    border-radius: 10px;
+    width: 200px;
+    text-align: center;
+    overflow: hidden;
+    transition: transform 0.3s ease;
+}
+
+.album-card:hover {
+    transform: scale(1.05);
+}
+
+.album-card img {
+    width: 100%;
+    border-bottom: 1px solid #333;
+}
+
+.album-title {
+    font-size: 16px;
+    padding: 10px;
+    color: #ccc;
+}
+
+/* Footer */
+footer {
+    text-align: center;
+    padding: 20px;
+    background-color: #121212;
+    margin-top: 40px;
+    font-size: 14px;
+    color: #888;
+}
