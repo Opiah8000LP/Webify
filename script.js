@@ -4,6 +4,7 @@ window.onload = function() {
     if (storedName) {
         document.getElementById('username').value = storedName;
         // Optionally, direct them to the chat page if they have a saved name.
+        // window.location.href = 'chat.html';  // Uncomment if you want automatic redirection if a name is already saved
     }
 };
 
@@ -23,7 +24,11 @@ function checkNameAvailability() {
     if (storedName === username) {
         // If the name is valid and available (or was already taken by this user), save and proceed
         localStorage.setItem('username', username);
-        window.location.href = 'chat.html';  // Redirect to chat page (create this page later)
+
+        // Redirection to the chat page after saving the name
+        setTimeout(() => {
+            window.location.href = 'chat.html';  // Redirect to the chat page
+        }, 300);  // Delay to allow name save before redirection (optional smooth effect)
     } else {
         // If name is not available, show error
         showError();
