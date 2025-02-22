@@ -9,104 +9,20 @@
 <body>
 
 <div class="container">
-    <!-- Display the anonymous username in top left corner -->
     <div id="user-info">
         <p id="username"></p>
     </div>
 
-    <!-- Chat area where messages will be displayed -->
     <div id="chat-area" class="chat-area">
         <!-- Messages will be dynamically inserted here -->
     </div>
 
-    <!-- Message input field at the bottom -->
     <textarea id="message-input" placeholder="Type your message..."></textarea>
-    
-    <!-- Send button -->
-    <button onclick="sendMessage()">Send</button>
+    <button id="send-button">Send</button>
 </div>
 
-<script>
-// Generate a random anonymous username if not already assigned
-window.onload = function() {
-    let username = localStorage.getItem('username');
-    
-    if (!username) {
-        username = generateAnonymousName();
-        localStorage.setItem('username', username);
-    }
-
-    document.getElementById('username').innerText = `You are logged in as: ${username}`;
-
-    // Load chat history from local storage
-    loadChatHistory();
-};
-
-// Generate a random anonymous name in the format ANONYMOUS#<random_number>
-function generateAnonymousName() {
-    const randomNumber = Math.floor(Math.random() * 10000);
-    return `ANONYMOUS#${randomNumber}`;
-}
-
-// Function to send a message
-function sendMessage() {
-    const messageInput = document.getElementById('message-input');
-    const message = messageInput.value.trim();
-
-    if (message) {
-        const username = localStorage.getItem('username');
-        const chatArea = document.getElementById('chat-area');
-        
-        // Create a message object
-        const messageObject = {
-            username: username,
-            message: message,
-            timestamp: new Date().toISOString()
-        };
-
-        // Get chat history from localStorage, or start a new array
-        let chatHistory = JSON.parse(localStorage.getItem('chatHistory')) || [];
-
-        // Add new message to chat history
-        chatHistory.push(messageObject);
-
-        // Save the updated chat history back to localStorage
-        localStorage.setItem('chatHistory', JSON.stringify(chatHistory));
-
-        // Display the new message
-        displayMessage(messageObject);
-        
-        // Clear the message input field
-        messageInput.value = '';
-    }
-}
-
-// Function to display a message in the chat
-function displayMessage(messageObject) {
-    const chatArea = document.getElementById('chat-area');
-
-    // Create a message element
-    const messageElement = document.createElement('div');
-    messageElement.classList.add('message');
-    messageElement.innerHTML = `<strong>${messageObject.username}</strong>: ${messageObject.message} <span class="timestamp">${new Date(messageObject.timestamp).toLocaleTimeString()}</span>`;
-
-    // Add message to chat area
-    chatArea.appendChild(messageElement);
-    
-    // Scroll to the bottom of the chat area
-    chatArea.scrollTop = chatArea.scrollHeight;
-}
-
-// Function to load chat history from localStorage
-function loadChatHistory() {
-    const chatHistory = JSON.parse(localStorage.getItem('chatHistory')) || [];
-
-    // Display all stored messages
-    chatHistory.forEach(message => {
-        displayMessage(message);
-    });
-}
-</script>
+<script src="/socket.io/socket.io.js"></script>
+<script src="scripts.js"></script>
 
 </body>
 </html>
