@@ -1,91 +1,59 @@
 /* Basic styling */
-body {
-    font-family: Arial, sans-serif;
-    background-color: #f4f4f9;
+body, html {
     margin: 0;
-    display: flex;
-    justify-content: flex-start;
-    align-items: stretch;
-    height: 100vh;
+    padding: 0;
+    height: 100%;
+    font-family: Arial, sans-serif;
 }
 
-/* Container for everything */
 .container {
     display: flex;
     flex-direction: column;
-    width: 100%;
-    height: 100vh;
-    position: relative;
+    height: 100%;
 }
 
-/* Username in top left corner */
 #user-info {
-    position: absolute;
-    top: 10px;
-    left: 10px;
-    font-size: 16px;
-    color: #333;
+    padding: 10px;
+    background-color: #3498db;
+    color: white;
+    text-align: left;
 }
 
-/* Chat area styles */
-.chat-area {
+#chat-area {
     flex-grow: 1;
     overflow-y: auto;
     padding: 10px;
-    border: 1px solid #ddd;
     background-color: #f9f9f9;
-    margin-left: 100px;  /* Leave space for the username on the left */
-    margin-bottom: 50px;  /* Space for the message input field */
-    border-radius: 5px;
-    display: flex;
-    flex-direction: column;
-    gap: 10px;
+    border-bottom: 1px solid #ddd;
 }
 
-/* Message styling */
 .message {
     margin-bottom: 10px;
-    font-size: 14px;
 }
 
 .message strong {
     color: #2c3e50;
 }
 
-.timestamp {
-    font-size: 0.8em;
-    color: #7f8c8d;
-    margin-left: 5px;
-}
-
-/* Textarea for message input */
-textarea {
-    width: calc(100% - 100px);  /* Same width as the chat area */
+#message-input {
+    width: 100%;
     padding: 10px;
-    border: 1px solid #ddd;
-    border-radius: 5px;
-    margin: 0;
+    border: none;
+    border-top: 1px solid #ddd;
     resize: none;
-    position: absolute;
-    bottom: 0;
-    left: 100px;
-    background-color: #fff;
+    box-sizing: border-box;
 }
 
-/* Send button at the bottom */
-button {
+#send-button {
     padding: 10px;
     background-color: #3498db;
     color: white;
     border: none;
-    border-radius: 5px;
+    border-top: 1px solid #ddd;
     cursor: pointer;
-    position: absolute;
-    bottom: 0;
-    left: calc(100% - 90px);
-    margin-left: 10px;
+    box-sizing: border-box;
 }
 
-button:hover {
+#send-button:hover {
     background-color: #2980b9;
 }
