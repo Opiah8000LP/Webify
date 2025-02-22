@@ -8,18 +8,35 @@
 </head>
 <body>
 
-<div class="chat-container">
-    <div class="chat-box" id="chat-box">
-        <!-- Messages will appear here -->
+<div class="container">
+    <h1>Welcome to the Chat</h1>
+    <div id="welcome-message"></div>
+
+    <div class="chat-area">
+        <p>Start chatting here...</p>
+        <!-- Add your chat interface here -->
     </div>
 
-    <div class="message-input">
-        <input type="text" id="message" placeholder="Type a message..." required>
-        <button onclick="sendMessage()">Send</button>
-    </div>
+    <button onclick="logout()">Logout</button>
 </div>
 
-<script src="scripts.js"></script>
+<script>
+// Fetch the saved username from localStorage
+window.onload = function() {
+    const username = localStorage.getItem('username');
+    if (username) {
+        document.getElementById('welcome-message').innerText = `Welcome, ${username}!`;
+    } else {
+        window.location.href = 'index.html';  // Redirect back to the name selection page if no username is set
+    }
+};
+
+// Logout function to clear localStorage and go back to the name selection page
+function logout() {
+    localStorage.removeItem('username');
+    window.location.href = 'index.html';  // Redirect to the name selection page
+}
+</script>
 
 </body>
 </html>
