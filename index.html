@@ -3,23 +3,24 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Public Chat - Name Selection</title>
+    <title>Webify - Name</title>
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
 
 <div class="container">
-    <h1>Enter Your Chat Name</h1>
-    <p>Please choose a unique name to join the chat.</p>
+    <h1>Select Your Name</h1>
 
-    <div class="form-container">
-        <input type="text" id="username" placeholder="Enter name..." maxlength="15">
-        <button onclick="checkNameAvailability()">Submit</button>
-    </div>
+    <!-- Name input form -->
+    <input type="text" id="username" placeholder="Enter your name" required>
 
-    <div id="error-message" class="error-message">
+    <!-- Error message display -->
+    <div id="error-message" class="error-message" style="display: none;">
         NAME NOT AVAILABLE
     </div>
+
+    <!-- Submit button -->
+    <button onclick="checkNameAvailability()">Submit</button>
 </div>
 
 <script src="scripts.js"></script>
