@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Webify - Chat</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+<div class="container">
+    <h1>Anonymous Chat Room</h1>
+
+    <!-- Display the anonymous username -->
+    <div id="user-info">
+        <p id="username"></p>
+    </div>
+
+    <!-- Chat area where messages will be displayed -->
+    <div id="chat-area" class="chat-area">
+        <!-- Messages will be dynamically inserted here -->
+    </div>
+
+    <!-- Message input field -->
+    <textarea id="message-input" placeholder="Type your message..."></textarea>
+
+    <!-- Send button -->
+    <button onclick="sendMessage()">Send</button>
+</div>
+
+<script>
+// Generate a random anonymous username if not already assigned
+window.onload = function() {
+    let username = localStorage.getItem('username');
+    
+    if (!username) {
+        username = generateAnonymousName();
+        localStorage.setItem('username', username);
+    }
+
+    document.getElementById('username').innerText = `You are logged in as: ${username}`;
+};
+
+// Generate a random anonymous name in the format ANONYMOUS#<random_number>
+function generateAnonymousName() {
+    const randomNumber = Math.floor(Math.random() * 10000);
+    return `ANONYMOUS#${randomNumber}`;
+}
+
+// Function to send a message
+function sendMessage() {
+    const messageInput = document.getElementById('message-input');
+    const message = messageInput.value.trim();
+
+    if (message) {
+        const username = localStorage.getItem('username');
+        const chatArea = document.getElementById('chat-area');
+        
+        // Create a message element
+        const messageElement = document.createElement('div');
+        messageElement.classList.add('message');
+        messageElement.innerHTML = `<strong>${username}</strong>: ${message}`;
+        
+        // Add message to chat area
+        chatArea.appendChild(messageElement);
+        
+        // Scroll to the bottom of the chat area
+        chatArea.scrollTop = chatArea.scrollHeight;
+
+        // Clear the message input field
+        messageInput.value = '';
+    }
+}
+</script>
+
+</body>
+</html>
